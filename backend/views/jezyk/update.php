@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Jezyk */
 
-$this->title = 'Update Jezyk: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Jezyks', 'url' => ['index']];
+$this->title = 'Aktualizuj język: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Język', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Aktualizuj';
 ?>
 <div class="jezyk-update">
 

@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Jezyk */
 
-$this->title = 'Create Jezyk';
-$this->params['breadcrumbs'][] = ['label' => 'Jezyks', 'url' => ['index']];
+$this->title = 'Dodaj język';
+$this->params['breadcrumbs'][] = ['label' => 'Język', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="jezyk-create">
