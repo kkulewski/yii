@@ -37,6 +37,13 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
 		['label' => 'Jezyk', 'url' => ['/jezyk']],
+		['label' => 'Kategoria', 'url' => ['/kategoria']],
+		['label' => 'Podkategoria', 'url' => ['/podkategoria']],
+		['label' => 'Rola', 'url' => ['/rola']],
+		['label' => 'Uprawnienia', 'url' => ['/uprawnienia']],
+		['label' => 'User', 'url' => ['/user']],
+		['label' => 'Wynik', 'url' => ['/wynik']],
+		['label' => 'Zestaw', 'url' => ['/zestaw']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
