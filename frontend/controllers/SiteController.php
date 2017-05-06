@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
+use common\models\User;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -139,6 +140,28 @@ class SiteController extends Controller
     public function actionAbout()
     {
         return $this->render('about');
+    }
+	
+	/**
+     * Displays about2 page.
+     *
+     * @return mixed
+     */
+    public function actionAbout2()
+    {
+        return $this->render('about2');
+    }
+	
+	
+	/**
+     * Displays Uzytkownik page.
+     *
+     * @return mixed
+     */
+    public function actionUzytkownik()
+    {
+		$model = new User();
+        return $this->render('Uzytkownik', [ 'model' => $model, ]);
     }
 
     /**
