@@ -149,7 +149,14 @@ class SiteController extends Controller
      */
     public function actionAbout2()
     {
-        return $this->render('about2');
+		if (\Yii::$app->user->can('admin')) {
+			return $this->render('about2');
+		}
+		else
+		{
+			return $this->render('about');
+		}
+
     }
 	
 	
