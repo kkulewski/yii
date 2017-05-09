@@ -49,4 +49,12 @@ class Podkategoria extends \yii\db\ActiveRecord
             'obrazek' => 'Obrazek',
         ];
     }
+	
+	 /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKategoria()
+    {
+        return $this->hasOne(Kategoria::className(), ['id' => 'kategoria_id']);
+    }
 }
