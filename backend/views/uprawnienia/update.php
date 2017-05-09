@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = 'Aktualizuj';
 
     <?= $this->render('_form', [
         'model' => $model,
+		'konta' => $konta,
+		'podkategorie' => $podkategorie,
     ]) ?>
 
 </div>

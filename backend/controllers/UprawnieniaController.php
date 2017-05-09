@@ -95,12 +95,18 @@ class UprawnieniaController extends Controller
     public function actionUpdate($konto_id, $podkategoria_id)
     {
         $model = $this->findModel($konto_id, $podkategoria_id);
+		$konta = User::find()->orderBy('username')->all();
+		$konta = ArrayHelper::map($konta, 'id', 'username');
+		$podkategorie = Podkategoria::find()->orderBy('nazwa')->all();
+		$podkategorie = ArrayHelper::map($podkategorie, 'id', 'nazwa');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'konto_id' => $model->konto_id, 'podkategoria_id' => $model->podkategoria_id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+				'konta' => $konta,
+				'podkategorie' => $podkategorie,
             ]);
         }
     }
