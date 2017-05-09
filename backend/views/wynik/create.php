@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Wynik */
 
-$this->title = 'Create Wynik';
-$this->params['breadcrumbs'][] = ['label' => 'Wyniks', 'url' => ['index']];
+$this->title = 'Dodaj wyniki';
+$this->params['breadcrumbs'][] = ['label' => 'Wynik', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="wynik-create">

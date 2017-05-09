@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Wynik */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Wyniks', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Wyniki', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="wynik-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Aktualizuj', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Usuń', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Czy na pewno chcesz usunąć?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,7 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
+            //'id',
             'konto_id',
             'zestaw_id',
             'data_wyniku',
