@@ -6,8 +6,8 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Uprawnienia */
 
-$this->title = 'Create Uprawnienia';
-$this->params['breadcrumbs'][] = ['label' => 'Uprawnienias', 'url' => ['index']];
+$this->title = 'Dodaj uprawnienia';
+$this->params['breadcrumbs'][] = ['label' => 'Uprawnienia', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="uprawnienia-create">

@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\UprawnieniaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Uprawnienias';
+$this->title = 'Uprawnienia';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="uprawnienia-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Uprawnienia', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Dodaj uprawnienia', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
