@@ -7,7 +7,7 @@ use yii\grid\GridView;
 /* @var $searchModel backend\models\PodkategoriaSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Podkategorias';
+$this->title = 'Podkategoria';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="podkategoria-index">
@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <p>
-        <?= Html::a('Create Podkategoria', ['create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Dodaj podkategorię', ['create'], ['class' => 'btn btn-success']) ?>
     </p>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
 
-            'id',
+            //'id',
             'kategoria_id',
             'nazwa',
             'opis:ntext',
