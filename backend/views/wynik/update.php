@@ -6,7 +6,7 @@ use yii\helpers\Html;
 /* @var $model common\models\Wynik */
 
 $this->title = 'Aktualizuj wyniki: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Wyniks', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Wynik', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
 $this->params['breadcrumbs'][] = 'Aktualizuj';
 ?>
@@ -16,6 +16,8 @@ $this->params['breadcrumbs'][] = 'Aktualizuj';
 
     <?= $this->render('_form', [
         'model' => $model,
+		'konta' => $konta,
+		'zestawy' => $zestawy,
     ]) ?>
 
 </div>

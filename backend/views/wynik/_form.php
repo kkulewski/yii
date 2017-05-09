@@ -12,9 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'konto_id')->textInput() ?>
+    <?= $form->field($model, 'konto_id')->dropDownList($konta) ?>
 
-    <?= $form->field($model, 'zestaw_id')->textInput() ?>
+    <?= $form->field($model, 'zestaw_id')->dropDownList($zestawy) ?>
 
     <?= $form->field($model, 'data_wyniku')->textInput() ?>
 

@@ -31,7 +31,9 @@ class Wynik extends \yii\db\ActiveRecord
         return [
             [['konto_id', 'zestaw_id', 'data_wyniku', 'wynik'], 'required'],
             [['konto_id', 'zestaw_id', 'wynik'], 'integer'],
-            [['data_wyniku'], 'safe'],
+            [['data_wyniku'], 'safe'],			
+			[['konto_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['konto_id' => 'id']],
+			[['zestaw_id'], 'exist', 'skipOnError' => true, 'targetClass' => Zestaw::className(), 'targetAttribute' => ['zestaw_id' => 'id']],
         ];
     }
 
@@ -47,5 +49,21 @@ class Wynik extends \yii\db\ActiveRecord
             'data_wyniku' => 'Data Wyniku',
             'wynik' => 'Wynik',
         ];
+    }
+	
+	/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKonto()
+    {
+        return $this->hasOne(User::className(), ['id' => 'konto_id']);
+    }
+	
+	/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getZestaw()
+    {
+        return $this->hasOne(Zestaw::className(), ['id' => 'zestaw_id']);
     }
 }

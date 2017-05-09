@@ -3,11 +3,15 @@
 namespace backend\controllers;
 
 use Yii;
+use common\models\User;
+use common\models\Zestaw;
 use common\models\Wynik;
 use backend\models\WynikSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
+use yii\helpers\ArrayHelper;
 
 /**
  * WynikController implements the CRUD actions for Wynik model.
@@ -64,12 +68,18 @@ class WynikController extends Controller
     public function actionCreate()
     {
         $model = new Wynik();
+		$konta = User::find()->orderBy('username')->all();
+		$konta = ArrayHelper::map($konta, 'id', 'username');
+		$zestawy = Zestaw::find()->orderBy('nazwa')->all();
+		$zestawy = ArrayHelper::map($zestawy, 'id', 'nazwa');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+				'konta' => $konta,
+				'zestawy' => $zestawy,
             ]);
         }
     }
@@ -83,12 +93,18 @@ class WynikController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+		$konta = User::find()->orderBy('username')->all();
+		$konta = ArrayHelper::map($konta, 'id', 'username');
+		$zestawy = Zestaw::find()->orderBy('nazwa')->all();
+		$zestawy = ArrayHelper::map($zestawy, 'id', 'nazwa');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+				'konta' => $konta,
+				'zestawy' => $zestawy,
             ]);
         }
     }
