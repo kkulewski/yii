@@ -4,10 +4,14 @@ namespace backend\controllers;
 
 use Yii;
 use common\models\Uprawnienia;
+use common\models\Podkategoria;
+use common\models\User;
 use backend\models\UprawnieniaSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+
+use yii\helpers\ArrayHelper;
 
 /**
  * UprawnieniaController implements the CRUD actions for Uprawnienia model.
@@ -65,12 +69,18 @@ class UprawnieniaController extends Controller
     public function actionCreate()
     {
         $model = new Uprawnienia();
-
+		$konta = User::find()->orderBy('username')->all();
+		$konta = ArrayHelper::map($konta, 'id', 'username');
+		$podkategorie = Podkategoria::find()->orderBy('nazwa')->all();
+		$podkategorie = ArrayHelper::map($podkategorie, 'id', 'nazwa');
+		
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'konto_id' => $model->konto_id, 'podkategoria_id' => $model->podkategoria_id]);
         } else {
             return $this->render('create', [
                 'model' => $model,
+				'konta' => $konta,
+				'podkategorie' => $podkategorie,
             ]);
         }
     }
