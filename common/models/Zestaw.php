@@ -39,6 +39,10 @@ class Zestaw extends \yii\db\ActiveRecord
             [['zestaw'], 'string'],
             [['data_dodania', 'data_edycji'], 'safe'],
             [['nazwa'], 'string', 'max' => 200],
+			[['konto_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['konto_id' => 'id']],
+			[['jezyk1_id'], 'exist', 'skipOnError' => true, 'targetClass' => Jezyk::className(), 'targetAttribute' => ['jezyk1_id' => 'id']],
+			[['jezyk2_id'], 'exist', 'skipOnError' => true, 'targetClass' => Jezyk::className(), 'targetAttribute' => ['jezyk2_id' => 'id']],
+			[['podkategoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Podkategoria::className(), 'targetAttribute' => ['podkategoria_id' => 'id']],
         ];
     }
 
@@ -60,4 +64,37 @@ class Zestaw extends \yii\db\ActiveRecord
             'data_edycji' => 'Data Edycji',
         ];
     }
+	
+	/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKonto()
+    {
+        return $this->hasOne(User::className(), ['id' => 'konto_id']);
+    }
+	
+	/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJezyk1()
+    {
+        return $this->hasOne(Jezyk::className(), ['id' => 'jezyk1_id']);
+    }
+	
+	/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getJezyk2()
+    {
+        return $this->hasOne(Jezyk::className(), ['id' => 'jezyk2_id']);
+    }
+	
+	/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPodkategoria()
+    {
+        return $this->hasOne(Podkategoria::className(), ['id' => 'podkategoria_id']);
+    }
+	
 }

@@ -7,7 +7,7 @@ use yii\widgets\DetailView;
 /* @var $model common\models\Zestaw */
 
 $this->title = $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Zestaws', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Zestaw', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="zestaw-view">
@@ -15,11 +15,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
+        <?= Html::a('Aktualizuj', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Usuń', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
+                'confirm' => 'Czy na pewno chcesz usunąć?',
                 'method' => 'post',
             ],
         ]) ?>
@@ -28,11 +28,11 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
-            'id',
-            'konto_id',
-            'jezyk1_id',
-            'jezyk2_id',
-            'podkategoria_id',
+            //'id',
+            'konto.username',
+            'jezyk1.nazwa',
+            'jezyk2.nazwa',
+            'podkategoria.nazwa',
             'nazwa',
             'zestaw:ntext',
             'ilosc_slowek',

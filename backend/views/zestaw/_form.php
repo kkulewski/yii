@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'konto_id')->textInput() ?>
+    <?= $form->field($model, 'konto_id')->dropDownList($konta) ?>
 
-    <?= $form->field($model, 'jezyk1_id')->textInput() ?>
+    <?= $form->field($model, 'jezyk1_id')->dropDownList($jezyki1) ?>
 
-    <?= $form->field($model, 'jezyk2_id')->textInput() ?>
+    <?= $form->field($model, 'jezyk2_id')->dropDownList($jezyki2) ?>
 
-    <?= $form->field($model, 'podkategoria_id')->textInput() ?>
+    <?= $form->field($model, 'podkategoria_id')->dropDownList($podkategorie) ?>
 
     <?= $form->field($model, 'nazwa')->textInput(['maxlength' => true]) ?>
 
@@ -31,7 +31,7 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'data_edycji')->textInput() ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Aktualizuj', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

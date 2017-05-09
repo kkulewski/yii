@@ -5,10 +5,10 @@ use yii\helpers\Html;
 /* @var $this yii\web\View */
 /* @var $model common\models\Zestaw */
 
-$this->title = 'Update Zestaw: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Zestaws', 'url' => ['index']];
+$this->title = 'Aktualizuj zestaw: ' . $model->id;
+$this->params['breadcrumbs'][] = ['label' => 'Zestawy', 'url' => ['index']];
 $this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+$this->params['breadcrumbs'][] = 'Aktualizuj';
 ?>
 <div class="zestaw-update">
 
@@ -16,6 +16,10 @@ $this->params['breadcrumbs'][] = 'Update';
 
     <?= $this->render('_form', [
         'model' => $model,
+		'konta' => $konta,
+		'jezyki1' => $jezyki1,
+		'jezyki2' => $jezyki2,
+		'podkategorie' => $podkategorie,
     ]) ?>
 
 </div>
