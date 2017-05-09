@@ -33,6 +33,7 @@ class Podkategoria extends \yii\db\ActiveRecord
             [['kategoria_id'], 'integer'],
             [['opis', 'obrazek'], 'string'],
             [['nazwa'], 'string', 'max' => 50],
+			[['kategoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Kategoria::className(), 'targetAttribute' => ['kategoria_id' => 'id']],
         ];
     }
 
@@ -43,7 +44,7 @@ class Podkategoria extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'kategoria_id' => 'Kategoria ID',
+            'kategoria.nazwa' => 'Kategoria',
             'nazwa' => 'Nazwa',
             'opis' => 'Opis',
             'obrazek' => 'Obrazek',
