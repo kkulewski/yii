@@ -28,6 +28,8 @@ class Uprawnienia extends \yii\db\ActiveRecord
         return [
             [['konto_id', 'podkategoria_id'], 'required'],
             [['konto_id', 'podkategoria_id'], 'integer'],
+			[['konto_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['konto_id' => 'id']],
+			[['podkategoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['podkategoria_id' => 'id']],
         ];
     }
 
