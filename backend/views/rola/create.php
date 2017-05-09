@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model common\models\Rola */
 
 $this->title = 'Dodaj rolę';
-$this->params['breadcrumbs'][] = ['label' => 'Rolas', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Rola', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="rola-create">
