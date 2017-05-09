@@ -41,4 +41,20 @@ class Uprawnienia extends \yii\db\ActiveRecord
             'podkategoria_id' => 'Podkategoria ID',
         ];
     }
+	
+	/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getKonto()
+    {
+        return $this->hasOne(User::className(), ['id' => 'konto_id']);
+    }
+	
+	/**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getPodkategoria()
+    {
+        return $this->hasOne(Podkategoria::className(), ['id' => 'podkategoria_id']);
+    }
 }
