@@ -89,12 +89,15 @@ class PodkategoriaController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+		$kategorie = Kategoria::find()->orderBy('nazwa')->all();
+		$kategorie = ArrayHelper::map($kategorie, 'id', 'nazwa');
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('update', [
                 'model' => $model,
+				'kategorie' => $kategorie,
             ]);
         }
     }
