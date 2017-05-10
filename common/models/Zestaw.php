@@ -97,4 +97,21 @@ class Zestaw extends \yii\db\ActiveRecord
         return $this->hasOne(Podkategoria::className(), ['id' => 'podkategoria_id']);
     }
 	
+	
+	public function tablicaSlowek()
+	{
+        // podziel na linie
+        $pary = explode(PHP_EOL, $this->zestaw);
+
+        // podziel linie na pojedyczne slowka
+        $tablica_slowek = array();
+        foreach($pary as $para){
+            $slowka = explode(';',$para);
+            $tablica_slowek[] =
+                              [ trim($slowka[0]), trim($slowka[1]) ];
+        }
+
+        return $tablica_slowek;
+    }
+	
 }

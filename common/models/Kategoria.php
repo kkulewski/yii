@@ -46,4 +46,9 @@ class Kategoria extends \yii\db\ActiveRecord
             'obrazek' => 'Obrazek',
         ];
     }
+	
+	public function getPodkategorias()
+	{
+		return $this->hasMany(Podkategoria::classname(), ['id' => 'id']);
+    }
 }

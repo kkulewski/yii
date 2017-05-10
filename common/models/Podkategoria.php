@@ -58,4 +58,10 @@ class Podkategoria extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Kategoria::className(), ['id' => 'kategoria_id']);
     }
+	
+	
+	public function getZestawy()
+	{
+    	   return $this->hasMany(Zestaw::classname(), ['id' => 'podkategoria_id']);
+    }
 }
