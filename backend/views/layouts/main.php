@@ -28,30 +28,30 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'My Company',
+        'brandLabel' => 'Słówka',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
     $menuItems = [
-        ['label' => 'Home', 'url' => ['/site/index']],
+        ['label' => 'Strona główna', 'url' => ['/site/index']],
 		['label' => 'Jezyk', 'url' => ['/jezyk']],
 		['label' => 'Kategoria', 'url' => ['/kategoria']],
 		['label' => 'Podkategoria', 'url' => ['/podkategoria']],
 		['label' => 'Rola', 'url' => ['/rola']],
 		['label' => 'Uprawnienia', 'url' => ['/uprawnienia']],
-		['label' => 'User', 'url' => ['/user']],
+		['label' => 'Użytkownik', 'url' => ['/user']],
 		['label' => 'Wynik', 'url' => ['/wynik']],
 		['label' => 'Zestaw', 'url' => ['/zestaw']],
     ];
     if (Yii::$app->user->isGuest) {
-        $menuItems[] = ['label' => 'Login', 'url' => ['/site/login']];
+        $menuItems[] = ['label' => 'Zaloguj', 'url' => ['/site/login']];
     } else {
         $menuItems[] = '<li>'
             . Html::beginForm(['/site/logout'], 'post')
             . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
+                'Wyloguj (' . Yii::$app->user->identity->username . ')',
                 ['class' => 'btn btn-link logout']
             )
             . Html::endForm()
@@ -75,7 +75,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; My Company <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Słówka <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>

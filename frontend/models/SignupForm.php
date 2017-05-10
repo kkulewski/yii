@@ -22,17 +22,29 @@ class SignupForm extends Model
         return [
             ['username', 'trim'],
             ['username', 'required'],
-            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This username has already been taken.'],
+            ['username', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Ta nazwa użytkownika jest już zajęta.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
 
             ['email', 'trim'],
             ['email', 'required'],
             ['email', 'email'],
             ['email', 'string', 'max' => 255],
-            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'This email address has already been taken.'],
+            ['email', 'unique', 'targetClass' => '\common\models\User', 'message' => 'Ten adres email jest już zajęty.'],
 
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
+        ];
+    }
+	
+	 /**
+     * @inheritdoc
+     */
+    public function attributeLabels()
+    {
+        return [
+			'username' => 'Nazwa użytkownika',
+			'email' => 'Email',
+			'password' => 'Hasło',
         ];
     }
 
