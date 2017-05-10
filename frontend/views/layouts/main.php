@@ -40,7 +40,7 @@ AppAsset::register($this);
 		['label' => 'About2', 'url' => ['/site/about2']],
         ['label' => 'Kontakt', 'url' => ['/site/contact']],
 		['label' => 'Uzytkownik', 'url' => ['/site/uzytkownik']],
-        ['label' => 'Kategorie słówek', 'url' => ['/kategoria/index']],
+        ['label' => 'Nauka', 'url' => ['/kategoria/index']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Zarejestruj', 'url' => ['/site/signup']];
