@@ -10,6 +10,10 @@ use yii\helpers\Html;
 Rozpoczęcie zestawu nr <?= $zestaw->id; ?>
 </p>
 <p>STATE: <?= $variableSend; ?> </p>
+<p>
+	CORRECT ANSWERS: <?= $Ca; ?>
+	WRONG ANSWERS:
+</p>
 
     <?= DetailView::widget([
         'model' => $zestaw,
