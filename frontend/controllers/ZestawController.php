@@ -35,13 +35,9 @@ class ZestawController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Zestaw::find(),
-        ]);
+        $dataProvider = new ActiveDataProvider([ 'query' => Zestaw::find(), ]);
 
-        return $this->render('index', [
-            'dataProvider' => $dataProvider,
-        ]);
+        return $this->render('index', [ 'dataProvider' => $dataProvider, ]);
     }
 
     /**
@@ -51,9 +47,7 @@ class ZestawController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
-            'model' => $this->findModel($id),
-        ]);
+        return $this->render('view', [ 'model' => $this->findModel($id), ]);
     }
 
     /**
@@ -65,12 +59,12 @@ class ZestawController extends Controller
     {
         $model = new Zestaw();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) 
+		{
             return $this->redirect(['view', 'id' => $model->id_zestaw]);
-        } else {
-            return $this->render('create', [
-                'model' => $model,
-            ]);
+        } else 
+		{
+            return $this->render('create', [ 'model' => $model, ]);
         }
     }
 
@@ -84,12 +78,12 @@ class ZestawController extends Controller
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) 
+		{
             return $this->redirect(['view', 'id' => $model->id_zestaw]);
-        } else {
-            return $this->render('update', [
-                'model' => $model,
-            ]);
+        } else 
+		{
+            return $this->render('update', [ 'model' => $model, ]);
         }
     }
 
@@ -115,9 +109,11 @@ class ZestawController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = Zestaw::findOne($id)) !== null) {
+        if (($model = Zestaw::findOne($id)) !== null) 
+		{
             return $model;
-        } else {
+        } else 
+		{
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }

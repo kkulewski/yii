@@ -9,6 +9,7 @@ use yii\helpers\Html;
 <p>
 Rozpoczęcie zestawu nr <?= $zestaw->id; ?>
 </p>
+<p>STATE: <?= $variableSend; ?> </p>
 
     <?= DetailView::widget([
         'model' => $zestaw,
@@ -19,4 +20,4 @@ Rozpoczęcie zestawu nr <?= $zestaw->id; ?>
         ],
     ]) ?>
 
-<?= Html::a('Pierwsze pytanie', [ 'test/next' ], [ 'class' => 'btn btn-primary' ]) ?>
+<?= Html::a('Begin', [ 'test/next' ], [ 'class' => 'btn btn-primary' ]) ?>

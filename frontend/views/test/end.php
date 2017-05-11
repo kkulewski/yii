@@ -10,6 +10,8 @@ use yii\helpers\Html;
     You may change the content of this page by modifying
     the file <code><?= __FILE__; ?></code>.
 </p>
+<p>STATE: <?= $variableSend; ?>
+</p>
 
 
-<?= Html::a('Wykonaj test ponownie', ['test/start', 'id' => $id], ['class' => 'btn btn-primary']) ?>
+<?= Html::a('Retry', ['test/start', 'id' => $id], ['class' => 'btn btn-primary']) ?>

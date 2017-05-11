@@ -13,15 +13,20 @@ class TestController extends \yii\web\Controller
 
     public function actionStart($id)
     {
-        if($zestaw = Zestaw::findOne($id)) {
+        if($zestaw = Zestaw::findOne($id)) 
+		{
             $session = Yii::$app->session;
             $session->open();
             $session->set('id',$id);
-            $session->set('poprawne_odpowiedzi',array());
-            $session->set('zle_odpowiedzi',array());
-            return $this->render('start', ['zestaw' => $zestaw]);
+            $session->set('answers_correct',array());
+            $session->set('answers_wrong',array());
+			$variableSend = 'ACTION START variable';
+            return $this->render('start', ['zestaw' => $zestaw, 'variableSend' => $variableSend]);
         }
-        else { echo 'error - brak zestawu'; }
+        else 
+		{ 
+            return $this->render('Wybrany zestaw nie istnieje!');
+		}
 
     }
 
@@ -30,8 +35,9 @@ class TestController extends \yii\web\Controller
         $session = Yii::$app->session;
         $session->open();
 
-        return $this->render('end',
-                             ['id' => $session['id'],]);
+		$variableSend = 'ACTION END variable';
+			
+        return $this->render('end', ['id' => $session['id'], 'variableSend' => $variableSend, ]);
     }
 
     public function actionNext()
@@ -40,41 +46,45 @@ class TestController extends \yii\web\Controller
         $session = Yii::$app->session;
         $session->open();
 
-        // sprawdz czy test w trakcie
-        if(!isset($_SESSION['id'])){
-            return $this->render('error_nie-w-tescie');
+        // check if test is started
+        if(!isset($_SESSION['id']))
+		{
+            return $this->render('Żaden test nie jest w trakcie!');
         }
 
-        //przygotuj zestaw i dane testu
+        // init
         $id = $session->get('id');
-        $poprawne_odpowiedzi  = $session->get('poprawne_odpowiedzi');
-        $zle_odpowiedzi = $session->get('zle_odpowiedzi');
+        $answers_correct  = $session->get('answers_correct');
+        $answers_wrong = $session->get('answers_wrong');
         $zestaw = Zestaw::findOne($id);
 
         // odbierz odpowiedz
         $wczytana_odpowiedz = new Odpowiedz();
-        if($wczytana_odpowiedz->load($_POST)){
+        if($wczytana_odpowiedz->load($_POST))
+		{
             // sprawdz odpowiedz
-            $wczytana_odpowiedz->sprawdzOdpowiedz($zestaw->tablicaSlowek());
+            $wczytana_odpowiedz->sprawdzOdpowiedz($zestaw->wordsDictionary());
 
             // zapisz wynik odpowiedzi
-            if($wczytana_odpowiedz->sprawdzenie==TRUE){
-                $poprawne_odpowiedzi[] = $wczytana_odpowiedz->para_nr;
-                $session->set('poprawne_odpowiedzi',$poprawne_odpowiedzi);
+            if($wczytana_odpowiedz->sprawdzenie==TRUE)
+			{
+                $answers_correct[] = $wczytana_odpowiedz->para_nr;
+                $session->set('answers_correct', $answers_correct);
             }
-            else {
-                $zle_odpowiedzi[] = $wczytana_odpowiedz->para_nr;
-                $session->set('zle_odpowiedzi',$zle_odpowiedzi);
+            else 
+			{
+                $answers_wrong[] = $wczytana_odpowiedz->para_nr;
+                $session->set('answers_wrong', $answers_wrong);
             }
         }
 
-        $test2 = $poprawne_odpowiedzi;
+        $test2 = $answers_correct;
 
         // przygotuj dane dla algorytmu
         $algorytm_dane = [
-            'poprawne_odpowiedzi' => $poprawne_odpowiedzi,
-            'zle_odpowiedzi' => $zle_odpowiedzi,
-            'tablica_slowek' => $zestaw->tablicaSlowek(),
+            'answers_correct' => $answers_correct,
+            'answers_wrong' => $answers_wrong,
+            'wordsDictionary' => $zestaw->wordsDictionary(),
         ];
 
         // wylosuj nowa pare
@@ -84,7 +94,8 @@ class TestController extends \yii\web\Controller
         //para [nr,pytanie,odpowiedz]
 
         // przygotuj model do nowej odpowiedzi
-        if($para!=null) {
+        if($para!=null) 
+		{
             $nowa_odpowiedz = new Odpowiedz();
             $nowa_odpowiedz->feedPara($para);
 
@@ -94,41 +105,52 @@ class TestController extends \yii\web\Controller
                                   'nowa_odpowiedz' => $nowa_odpowiedz,
                                  ]);
         }
-        else {
-            return $this->redirect(['end']);
+        else 
+		{
+			$variableSend = 'ACTION NEXT variable';
+            return $this->redirect(['end', 'variableSend' => $variableSend ]);
         }
     }
 
 }
 
-class Algorytm {
-    public function __construct(array $arguments = array()) {
-        if (!empty($arguments)) {
-            foreach ($arguments as $property => $argument) {
+class Algorytm 
+{
+    public function __construct(array $arguments = array()) 
+	{
+        if (!empty($arguments)) 
+		{
+            foreach ($arguments as $property => $argument) 
+			{
                 $this->{$property} = $argument;
             }
         }
     }
 
-    public function losujPare(){
+    public function losujPare()
+	{
         // losowanie nastepnego slowka (gdy zestaw juz przefiltrowany)
     }
-    public function przygotujSlowka(){
+    public function przygotujSlowka()
+	{
         // filtrowanie zestawu
     }
 }
 
-class Algorytm1 extends Algorytm {
+class Algorytm1 extends Algorytm 
+{
     public $liczba;
 
-    public function losujPare() {
+    public function losujPare() 
+	{
         $this->przygotujSlowka();
 
-        if(count($this->tablica_slowek)==0) return null;
+        if (count($this->wordsDictionary) == 0) 
+			return null;
 
-        $para_nr = array_rand($this->tablica_slowek);
+        $para_nr = array_rand($this->wordsDictionary);
 
-        $next_word = $this->tablica_slowek[$para_nr];
+        $next_word = $this->wordsDictionary[$para_nr];
 
         $para['nr'] = $para_nr;
         $para['pytanie'] = $next_word[0];
@@ -137,10 +159,12 @@ class Algorytm1 extends Algorytm {
         return $para;
     }
 
-    public function przygotujSlowka(){
+    public function przygotujSlowka()
+	{
         // usun slowka ktore odpowiedziano poprawnie
-        foreach($this->poprawne_odpowiedzi as $slowko_nr){
-            unset($this->tablica_slowek[$slowko_nr]);
+        foreach($this->answers_correct as $slowko_nr)
+		{
+            unset($this->wordsDictionary[$slowko_nr]);
         }
     }
 

@@ -98,20 +98,21 @@ class Zestaw extends \yii\db\ActiveRecord
     }
 	
 	
-	public function tablicaSlowek()
+	public function wordsDictionary()
 	{
-        // podziel na linie
-        $pary = explode(PHP_EOL, $this->zestaw);
-
-        // podziel linie na pojedyczne slowka
-        $tablica_slowek = array();
-        foreach($pary as $para){
-            $slowka = explode(';',$para);
-            $tablica_slowek[] =
-                              [ trim($slowka[0]), trim($slowka[1]) ];
+		
+		// create wordPairs array using zestaw
+        $wordPairsArray = explode(PHP_EOL, $this->zestaw);
+        $wordsDictionary = array();
+		
+		// prepare words dictionary
+        foreach($wordPairsArray as $p)
+		{
+            $wordPair = explode(';', $p);
+            $wordsDictionary[] = [ $wordPair[0], $wordPair[1] ];
         }
 
-        return $tablica_slowek;
+        return $wordsDictionary;
     }
 	
 }
