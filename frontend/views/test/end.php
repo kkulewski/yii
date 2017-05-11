@@ -4,17 +4,11 @@
 use yii\helpers\Html;
 
 ?>
-<h1>test/end</h1>
+<h1>Wyniki testu</h1>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
-<p>
-	STATE: <?= $variableSend; ?>
-	CORRECT: <?= $correct; ?>
-	WRONG: <?= $wrong; ?>
-</p>
+<p>STATE: <?= $method; ?></p>
+<p>CORRECT: <?= $correct; ?></p>
+<p>WRONG: <?= $wrong; ?></p>
 
 
 <?= Html::a('Retry', ['test/start', 'id' => $id], ['class' => 'btn btn-primary']) ?>

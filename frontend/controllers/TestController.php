@@ -7,14 +7,10 @@ use Yii;
 use common\models\Zestaw;
 use common\models\Odpowiedz;
 
-
 class TestController extends \yii\web\Controller
 {
-	public $Ca = 5;
-	public $Wa = 3;
 	public $Correct = 0;
 	public $Wrong = 0;
-	
 	
     public function actionStart($id)
     {
@@ -25,10 +21,10 @@ class TestController extends \yii\web\Controller
             $session->set('id',$id);
             $session->set('answers_correct',array());
             $session->set('answers_wrong',array());
-			$variableSend = 'ACTION START variable';
-			//$this->Ca = 7;
-			//$this->Wa = 4;
-            return $this->render('start', ['zestaw' => $zestaw, 'variableSend' => $variableSend, 'Ca' => $this->Ca ]);
+			$session->set('currentQuestionNumber',1);
+			
+			$method = 'ACTION START';
+            return $this->render('start', ['zestaw' => $zestaw, 'method' => $method, ]);
         }
         else 
 		{ 
@@ -42,84 +38,96 @@ class TestController extends \yii\web\Controller
         $session = Yii::$app->session;
         $session->open();
 
-		$variableSend = 'ACTION END variable';
 		$correct = count ( $session->get('answers_correct') );
 		$wrong = count ( $session->get('answers_wrong') );
 			
-        return $this->render('end', ['id' => $session['id'], 'variableSend' => $variableSend, 'correct' => $correct, 'wrong' => $wrong]);
+		$method = 'ACTION END';
+        return $this->render('end', ['id' => $session['id'], 'method' => $method, 'correct' => $correct, 'wrong' => $wrong]);
     }
 
     public function actionNext()
     {
-        $test = null;
         $session = Yii::$app->session;
         $session->open();
 
-        // check if test is started
+        // check if test started
         if(!isset($_SESSION['id']))
 		{
             return $this->render('Żaden test nie jest w trakcie!');
         }
 
-        // init
+        // init session details
         $id = $session->get('id');
         $answers_correct  = $session->get('answers_correct');
         $answers_wrong = $session->get('answers_wrong');
         $zestaw = Zestaw::findOne($id);
 
-        // odbierz odpowiedz
-        $wczytana_odpowiedz = new Odpowiedz();
-        if($wczytana_odpowiedz->load($_POST))
+        // get user answer
+        $receivedAnswer = new Odpowiedz();
+        if($receivedAnswer->load($_POST))
 		{
-            // sprawdz odpowiedz
-            $wczytana_odpowiedz->sprawdzOdpowiedz($zestaw->wordsDictionary());
-
             // zapisz wynik odpowiedzi
-            if($wczytana_odpowiedz->sprawdzenie==TRUE)
+            if($receivedAnswer->isAnswerCorrect($zestaw->wordsDictionary()) == TRUE)
 			{
-                $answers_correct[] = $wczytana_odpowiedz->para_nr;
+				// update question number counter
+				$questionNumber = $session->get('currentQuestionNumber');
+				$session->set('currentQuestionNumber', $questionNumber + 1);
+				
+                $answers_correct[] = $receivedAnswer->pairNumber;
                 $session->set('answers_correct', $answers_correct);
 				$this->Correct = count ($answers_correct);
             }
             else 
 			{
-                $answers_wrong[] = $wczytana_odpowiedz->para_nr;
+                $answers_wrong[] = $receivedAnswer->pairNumber;
                 $session->set('answers_wrong', $answers_wrong);
 				$this->Wrong = count ($answers_wrong);
             }
         }
 
-        // przygotuj dane dla algorytmu
-        $algorytm_dane = [
+        // prepare data for test
+        $testData = [
             'answers_correct' => $answers_correct,
             'answers_wrong' => $answers_wrong,
             'wordsDictionary' => $zestaw->wordsDictionary(),
         ];
-
-        // wylosuj nowa pare
-        // TODO wybor algorytmu
-        $testMode = new RandomTestMode($algorytm_dane);
-        $para = $testMode->getPair();
-        //para [nr,pytanie,odpowiedz]
 		
-        // przygotuj model do nowej odpowiedzi
-        if($para!=null) 
-		{
-            $nowa_odpowiedz = new Odpowiedz();
-            $nowa_odpowiedz->feedPara($para);
-			
-								
+		$totalQuestions = count($zestaw->wordsDictionary());
 
-            return $this->render('next',
-                                 ['id' => $id,
-                                  'test' => $test,
-                                  'nowa_odpowiedz' => $nowa_odpowiedz,
-                                 ]);
+        // get new pair
+		$mode = Yii::$app->getRequest()->getQueryParam('mode');
+		// get $mode from user -> button in test-start view?
+		
+		if( $mode == 1)
+		{
+			 $testMode = new RandomTestMode($testData);
+		}
+		else if ( $mode == 2 )
+		{
+			$testMode = new SequentialTestMode($testData);
+		}
+		else
+		{
+			$testMode = new RandomTestMode($testData);
+		}
+		
+		// handle next pair
+        $pair = $testMode->getPair();
+        if($pair != null) 
+		{
+            $nextAnswer = new Odpowiedz();
+            $nextAnswer->feedPair($pair);
+			
+			$questionNumber = $session->get('currentQuestionNumber');
+			
+			$method = 'ACTION NEXT';
+            return $this->render('next', ['id' => $id, 'nextAnswer' => $nextAnswer, 'method' => $method, 
+										'questionNumber' => $questionNumber, 'totalQuestions' => $totalQuestions, ]);
         }
         else 
 		{
-			$variableSend = 'ACTION NEXT variable';
-            return $this->redirect(['end', 'variableSend' => $variableSend, ]);
+			$method = 'ACTION NEXT';
+            return $this->redirect(['end', 'variableSend' => $method, ]);
         }
     }
 
@@ -139,38 +147,54 @@ class TestMode
     }
 
     public function getPair() { }
-    public function prepareSet() { }
 }
 
 class RandomTestMode extends TestMode 
 {
-    public $liczba;
-
     public function getPair() 
 	{
-        $this->prepareSet();
-
-        if (count($this->wordsDictionary) == 0) 
-			return null;
-
-        $pairNumber = array_rand($this->wordsDictionary);
-
-        $nextWord = $this->wordsDictionary[$pairNumber];
-
-        $pair['nr'] = $pairNumber;
-        $pair['pytanie'] = $nextWord[0];
-        $pair['odpowiedz'] = $nextWord[1];
-        
-        return $pair;
-    }
-
-    public function prepareSet()
-	{
-        // delete correctly guessed words
+		// remove correctly guessed pairs from set
         foreach($this->answers_correct as $correctGuess)
 		{
             unset($this->wordsDictionary[$correctGuess]);
         }
-    }
 
+		// if no more pairs left - finish test
+        if (count($this->wordsDictionary) == 0) 
+			return null;
+
+		// get random pair
+        $pairNumber = array_rand($this->wordsDictionary);
+        $nextWord = $this->wordsDictionary[$pairNumber];
+        $pair['pairNumber'] = $pairNumber;
+        $pair['pairQuestion'] = $nextWord[0];
+        $pair['pairAnswer'] = $nextWord[1];
+        
+        return $pair;
+    }
+}
+
+class SequentialTestMode extends TestMode 
+{
+    public function getPair() 
+	{
+		// remove correctly guessed pairs from set
+        foreach($this->answers_correct as $correctGuess)
+		{
+            unset($this->wordsDictionary[$correctGuess]);
+        }
+
+		// if no more pairs left - finish test
+        if (count($this->wordsDictionary) == 0) 
+			return null;
+
+		// get pair
+        $pairNumber = key($this->wordsDictionary);
+        $nextWord = $this->wordsDictionary[$pairNumber];
+        $pair['pairNumber'] = $pairNumber;
+        $pair['pairQuestion'] = $nextWord[0];
+        $pair['pairAnswer'] = $nextWord[1];
+        
+        return $pair;
+    }
 }

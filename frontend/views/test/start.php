@@ -4,16 +4,12 @@
 use yii\widgets\DetailView;
 use yii\helpers\Html;
 ?>
-<h1>test/start</h1>
+<h1>Rozpoczęcie nauki</h1>
 
-<p>
-Rozpoczęcie zestawu nr <?= $zestaw->id; ?>
-</p>
-<p>STATE: <?= $variableSend; ?> </p>
-<p>
-	CORRECT ANSWERS: <?= $Ca; ?>
-	WRONG ANSWERS:
-</p>
+<p>Zestaw nr <?= $zestaw->id; ?> </p>
+<p>STATE: <?= $method; ?> </p>
+<p>CORRECT ANSWERS:</p>
+<p>WRONG ANSWERS:</p>
 
     <?= DetailView::widget([
         'model' => $zestaw,
@@ -24,4 +20,5 @@ Rozpoczęcie zestawu nr <?= $zestaw->id; ?>
         ],
     ]) ?>
 
-<?= Html::a('Begin', [ 'test/next' ], [ 'class' => 'btn btn-primary' ]) ?>
+<?= Html::a('Losowo', [ 'test/next', 'mode' => 1, ], [ 'class' => 'btn btn-primary' ]) ?>&nbsp;&nbsp;
+<?= Html::a('Sekwencyjnie', [ 'test/next', 'mode' => 2, ], [ 'class' => 'btn btn-primary' ]) ?>
