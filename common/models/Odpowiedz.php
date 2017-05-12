@@ -25,9 +25,15 @@ class Odpowiedz extends Model
         $this->pairAnswer = $pair['pairAnswer'];
     }
 
-    public function isAnswerCorrect($zestaw)
+    public function isAnswerCorrect($zestaw, $reverse)
 	{
-        $isDifferent = ( strcmp($zestaw[$this->pairNumber][1], $this->userAnswer) );
+		if($reverse == TRUE)
+			$answerKey = 0;
+		else
+			$answerKey = 1;
+		
+        $isDifferent = ( strcmp($zestaw[$this->pairNumber][$answerKey], $this->userAnswer) );
+		
 		if($isDifferent == 0)
 		{
 			return TRUE;

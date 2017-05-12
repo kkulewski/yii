@@ -61,13 +61,18 @@ class TestController extends \yii\web\Controller
         $answers_correct  = $session->get('answers_correct');
         $answers_wrong = $session->get('answers_wrong');
         $zestaw = Zestaw::findOne($id);
+		
+		
+		$mode = Yii::$app->getRequest()->getQueryParam('mode');
+		$reverse = Yii::$app->getRequest()->getQueryParam('reverse');
+		// get $mode from user -> button in test-start view?
 
         // get user answer
         $receivedAnswer = new Odpowiedz();
         if($receivedAnswer->load($_POST))
 		{
             // zapisz wynik odpowiedzi
-            if($receivedAnswer->isAnswerCorrect($zestaw->wordsDictionary()) == TRUE)
+            if($receivedAnswer->isAnswerCorrect($zestaw->wordsDictionary(), $reverse) == TRUE)
 			{
 				// update question number counter
 				$questionNumber = $session->get('currentQuestionNumber');
@@ -95,9 +100,6 @@ class TestController extends \yii\web\Controller
 		$totalQuestions = count($zestaw->wordsDictionary());
 
         // get new pair
-		$mode = Yii::$app->getRequest()->getQueryParam('mode');
-		// get $mode from user -> button in test-start view?
-		
 		if( $mode == 1)
 		{
 			 $testMode = new RandomTestMode($testData);
@@ -112,7 +114,7 @@ class TestController extends \yii\web\Controller
 		}
 		
 		// handle next pair
-        $pair = $testMode->getPair();
+        $pair = $testMode->getPair($reverse);
         if($pair != null) 
 		{
             $nextAnswer = new Odpowiedz();
@@ -146,12 +148,12 @@ class TestMode
         }
     }
 
-    public function getPair() { }
+    public function getPair($reverse) { }
 }
 
 class RandomTestMode extends TestMode 
 {
-    public function getPair() 
+    public function getPair($reverse) 
 	{
 		// remove correctly guessed pairs from set
         foreach($this->answers_correct as $correctGuess)
@@ -162,13 +164,24 @@ class RandomTestMode extends TestMode
 		// if no more pairs left - finish test
         if (count($this->wordsDictionary) == 0) 
 			return null;
+		
+		if($reverse == TRUE)
+		{
+			$q = 1;
+			$a = 0;
+		}
+		else
+		{
+			$q = 0;
+			$a = 1;
+		}
 
 		// get random pair
         $pairNumber = array_rand($this->wordsDictionary);
         $nextWord = $this->wordsDictionary[$pairNumber];
         $pair['pairNumber'] = $pairNumber;
-        $pair['pairQuestion'] = $nextWord[0];
-        $pair['pairAnswer'] = $nextWord[1];
+        $pair['pairQuestion'] = $nextWord[$q];
+        $pair['pairAnswer'] = $nextWord[$a];
         
         return $pair;
     }
@@ -176,7 +189,7 @@ class RandomTestMode extends TestMode
 
 class SequentialTestMode extends TestMode 
 {
-    public function getPair() 
+    public function getPair($reverse) 
 	{
 		// remove correctly guessed pairs from set
         foreach($this->answers_correct as $correctGuess)
@@ -188,12 +201,23 @@ class SequentialTestMode extends TestMode
         if (count($this->wordsDictionary) == 0) 
 			return null;
 
+		if($reverse == TRUE)
+		{
+			$q = 1;
+			$a = 0;
+		}
+		else
+		{
+			$q = 0;
+			$a = 1;
+		}
+			
 		// get pair
         $pairNumber = key($this->wordsDictionary);
         $nextWord = $this->wordsDictionary[$pairNumber];
         $pair['pairNumber'] = $pairNumber;
-        $pair['pairQuestion'] = $nextWord[0];
-        $pair['pairAnswer'] = $nextWord[1];
+        $pair['pairQuestion'] = $nextWord[$q];
+        $pair['pairAnswer'] = $nextWord[$a];
         
         return $pair;
     }

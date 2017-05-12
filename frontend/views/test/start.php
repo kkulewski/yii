@@ -20,5 +20,7 @@ use yii\helpers\Html;
         ],
     ]) ?>
 
-<?= Html::a('Losowo', [ 'test/next', 'mode' => 1, ], [ 'class' => 'btn btn-primary' ]) ?>&nbsp;&nbsp;
-<?= Html::a('Sekwencyjnie', [ 'test/next', 'mode' => 2, ], [ 'class' => 'btn btn-primary' ]) ?>
+<?= Html::a('Losowo', [ 'test/next', 'mode' => 1, 'reverse' => FALSE, ], [ 'class' => 'btn btn-primary' ]) ?>&nbsp;&nbsp;
+<?= Html::a('Sekwencyjnie', [ 'test/next', 'mode' => 2, 'reverse' => FALSE, ], [ 'class' => 'btn btn-primary' ]) ?> <br/><br/>
+<?= Html::a('Losowo R', [ 'test/next', 'mode' => 1, 'reverse' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?>&nbsp;&nbsp; 
+<?= Html::a('Sekwencyjnie R', [ 'test/next', 'mode' => 2, 'reverse' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?>
