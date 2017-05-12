@@ -39,11 +39,9 @@ AppAsset::register($this);
 		['label' => 'Jezyk', 'url' => ['/jezyk']],
 		['label' => 'Kategoria', 'url' => ['/kategoria']],
 		['label' => 'Podkategoria', 'url' => ['/podkategoria']],
-		['label' => 'Rola', 'url' => ['/rola']],
-		['label' => 'Uprawnienia', 'url' => ['/uprawnienia']],
-		['label' => 'Użytkownik', 'url' => ['/user']],
-		['label' => 'Wynik', 'url' => ['/wynik']],
 		['label' => 'Zestaw', 'url' => ['/zestaw']],
+		['label' => 'Wynik', 'url' => ['/wynik']],
+		['label' => 'Użytkownik', 'url' => ['/user']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Zaloguj', 'url' => ['/site/login']];
