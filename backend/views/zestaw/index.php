@@ -29,11 +29,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'jezyk1.nazwa',
             'jezyk2.nazwa',
             'podkategoria.nazwa',
-            // 'nazwa',
+            'nazwa',
             // 'zestaw:ntext',
-            // 'ilosc_slowek',
-            // 'data_dodania',
-            // 'data_edycji',
+            'ilosc_slowek',
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

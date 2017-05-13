@@ -15,8 +15,6 @@ use Yii;
  * @property string $nazwa
  * @property string $zestaw
  * @property integer $ilosc_slowek
- * @property string $data_dodania
- * @property string $data_edycji
  */
 class Zestaw extends \yii\db\ActiveRecord
 {
@@ -34,10 +32,9 @@ class Zestaw extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['konto_id', 'jezyk1_id', 'jezyk2_id', 'podkategoria_id', 'nazwa', 'zestaw', 'ilosc_slowek', 'data_dodania'], 'required'],
+            [['konto_id', 'jezyk1_id', 'jezyk2_id', 'podkategoria_id', 'nazwa', 'zestaw', 'ilosc_slowek'], 'required'],
             [['konto_id', 'jezyk1_id', 'jezyk2_id', 'podkategoria_id', 'ilosc_slowek'], 'integer'],
             [['zestaw'], 'string'],
-            [['data_dodania', 'data_edycji'], 'safe'],
             [['nazwa'], 'string', 'max' => 200],
 			[['konto_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['konto_id' => 'id']],
 			[['jezyk1_id'], 'exist', 'skipOnError' => true, 'targetClass' => Jezyk::className(), 'targetAttribute' => ['jezyk1_id' => 'id']],
@@ -60,8 +57,6 @@ class Zestaw extends \yii\db\ActiveRecord
             'nazwa' => 'Nazwa',
             'zestaw' => 'Zestaw',
             'ilosc_slowek' => 'Ilosc Slowek',
-            'data_dodania' => 'Data Dodania',
-            'data_edycji' => 'Data Edycji',
         ];
     }
 	

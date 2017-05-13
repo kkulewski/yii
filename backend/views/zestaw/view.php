@@ -36,8 +36,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'nazwa',
             'zestaw:ntext',
             'ilosc_slowek',
-            'data_dodania',
-            'data_edycji',
         ],
     ]) ?>
 

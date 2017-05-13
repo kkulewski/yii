@@ -19,7 +19,7 @@ class KategoriaSearch extends Kategoria
     {
         return [
             [['id'], 'integer'],
-            [['nazwa', 'opis', 'obrazek'], 'safe'],
+            [['nazwa', 'opis'], 'safe'],
         ];
     }
 
@@ -63,8 +63,7 @@ class KategoriaSearch extends Kategoria
         ]);
 
         $query->andFilterWhere(['like', 'nazwa', $this->nazwa])
-            ->andFilterWhere(['like', 'opis', $this->opis])
-            ->andFilterWhere(['like', 'obrazek', $this->obrazek]);
+            ->andFilterWhere(['like', 'opis', $this->opis]);
 
         return $dataProvider;
     }

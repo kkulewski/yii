@@ -32,7 +32,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'kategoria.nazwa',
             'nazwa',
             'opis:ntext',
-            'obrazek',
         ],
     ]) ?>
 

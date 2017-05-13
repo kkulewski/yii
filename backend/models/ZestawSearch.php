@@ -19,7 +19,7 @@ class ZestawSearch extends Zestaw
     {
         return [
             [['id', 'konto_id', 'jezyk1_id', 'jezyk2_id', 'podkategoria_id', 'ilosc_slowek'], 'integer'],
-            [['nazwa', 'zestaw', 'data_dodania', 'data_edycji'], 'safe'],
+            [['nazwa', 'zestaw'], 'safe'],
         ];
     }
 
@@ -65,8 +65,6 @@ class ZestawSearch extends Zestaw
             'jezyk2_id' => $this->jezyk2_id,
             'podkategoria_id' => $this->podkategoria_id,
             'ilosc_slowek' => $this->ilosc_slowek,
-            'data_dodania' => $this->data_dodania,
-            'data_edycji' => $this->data_edycji,
         ]);
 
         $query->andFilterWhere(['like', 'nazwa', $this->nazwa])

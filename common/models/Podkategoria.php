@@ -11,7 +11,6 @@ use Yii;
  * @property integer $kategoria_id
  * @property string $nazwa
  * @property string $opis
- * @property resource $obrazek
  */
 class Podkategoria extends \yii\db\ActiveRecord
 {
@@ -31,7 +30,7 @@ class Podkategoria extends \yii\db\ActiveRecord
         return [
             [['kategoria_id', 'nazwa', 'opis'], 'required'],
             [['kategoria_id'], 'integer'],
-            [['opis', 'obrazek'], 'string'],
+            [['opis'], 'string'],
             [['nazwa'], 'string', 'max' => 50],
 			[['kategoria_id'], 'exist', 'skipOnError' => true, 'targetClass' => Kategoria::className(), 'targetAttribute' => ['kategoria_id' => 'id']],
         ];
@@ -47,7 +46,6 @@ class Podkategoria extends \yii\db\ActiveRecord
             'kategoria.nazwa' => 'Kategoria',
             'nazwa' => 'Nazwa',
             'opis' => 'Opis',
-            'obrazek' => 'Obrazek',
         ];
     }
 	

@@ -16,8 +16,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'opis')->textarea(['rows' => 6]) ?>
 
-    <?= $form->field($model, 'obrazek')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Aktualizuj', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>

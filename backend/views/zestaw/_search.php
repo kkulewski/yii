@@ -31,10 +31,6 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'ilosc_slowek') ?>
 
-    <?php // echo $form->field($model, 'data_dodania') ?>
-
-    <?php // echo $form->field($model, 'data_edycji') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

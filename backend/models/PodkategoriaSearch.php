@@ -19,7 +19,7 @@ class PodkategoriaSearch extends Podkategoria
     {
         return [
             [['id', 'kategoria_id'], 'integer'],
-            [['nazwa', 'opis', 'obrazek'], 'safe'],
+            [['nazwa', 'opis'], 'safe'],
         ];
     }
 
@@ -64,8 +64,7 @@ class PodkategoriaSearch extends Podkategoria
         ]);
 
         $query->andFilterWhere(['like', 'nazwa', $this->nazwa])
-            ->andFilterWhere(['like', 'opis', $this->opis])
-            ->andFilterWhere(['like', 'obrazek', $this->obrazek]);
+            ->andFilterWhere(['like', 'opis', $this->opis]);
 
         return $dataProvider;
     }

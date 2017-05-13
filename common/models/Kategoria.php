@@ -10,7 +10,6 @@ use Yii;
  * @property string $id
  * @property string $nazwa
  * @property string $opis
- * @property resource $obrazek
  */
 class Kategoria extends \yii\db\ActiveRecord
 {
@@ -29,7 +28,7 @@ class Kategoria extends \yii\db\ActiveRecord
     {
         return [
             [['nazwa', 'opis'], 'required'],
-            [['opis', 'obrazek'], 'string'],
+            [['opis'], 'string'],
             [['nazwa'], 'string', 'max' => 50],
         ];
     }
@@ -43,7 +42,6 @@ class Kategoria extends \yii\db\ActiveRecord
             'id' => 'ID',
             'nazwa' => 'Nazwa',
             'opis' => 'Opis',
-            'obrazek' => 'Obrazek',
         ];
     }
 	

@@ -23,8 +23,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'opis') ?>
 
-    <?= $form->field($model, 'obrazek') ?>
-
     <div class="form-group">
         <?= Html::submitButton('Szukaj', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>

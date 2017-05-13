@@ -26,10 +26,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'ilosc_slowek')->textInput() ?>
 
-    <?= $form->field($model, 'data_dodania')->textInput() ?>
-
-    <?= $form->field($model, 'data_edycji')->textInput() ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Aktualizuj', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
