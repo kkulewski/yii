@@ -36,12 +36,12 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Strona główna', 'url' => ['/site/index']],
-		['label' => 'Jezyk', 'url' => ['/jezyk']],
-		['label' => 'Kategoria', 'url' => ['/kategoria']],
-		['label' => 'Podkategoria', 'url' => ['/podkategoria']],
-		['label' => 'Zestaw', 'url' => ['/zestaw']],
-		['label' => 'Wynik', 'url' => ['/wynik']],
-		['label' => 'Użytkownik', 'url' => ['/user']],
+		['label' => 'Jezyk', 'url' => ['/jezyk'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Kategoria', 'url' => ['/kategoria'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Podkategoria', 'url' => ['/podkategoria'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Zestaw', 'url' => ['/zestaw'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Wynik', 'url' => ['/wynik'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Użytkownik', 'url' => ['/user'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1), ],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Zaloguj', 'url' => ['/site/login']];

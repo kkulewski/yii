@@ -14,15 +14,5 @@ $this->title = 'Słówka';
 
     <div class="body-content">
 
-        <div class="row">
-            <div class="col-lg-12">
-                <h2>Panel administratora</h2>
-				
-                <p>Panel administratora to bardzo przydatna rzecz. Można z jego poziomu zarządzać całą bazą danych aplikacji. </p>
-				
-            </div>
-			
-        </div>
-
     </div>
 </div>
