@@ -12,7 +12,7 @@ class TestController extends \yii\web\Controller
 	public $Correct = 0;
 	public $Wrong = 0;
 	
-    public function actionStart($id)
+    public function actionView($id)
     {
         if($zestaw = Zestaw::findOne($id)) 
 		{
@@ -35,9 +35,7 @@ class TestController extends \yii\web\Controller
 				$attributes = ['nazwa', ];
 			}
 
-			
-			$method = 'ACTION START';
-            return $this->render('start', ['zestaw' => $zestaw, 'method' => $method, 'attributes' => $attributes, ]);
+            return $this->render('view', ['zestaw' => $zestaw, 'attributes' => $attributes, ]);
         }
         else 
 		{ 
@@ -46,16 +44,15 @@ class TestController extends \yii\web\Controller
 
     }
 
-    public function actionEnd()
+    public function actionResult()
     {
         $session = Yii::$app->session;
         $session->open();
 
 		$correct = count ( $session->get('answers_correct') );
 		$wrong = count ( $session->get('answers_wrong') );
-			
-		$method = 'ACTION END';
-        return $this->render('end', ['id' => $session['id'], 'method' => $method, 'correct' => $correct, 'wrong' => $wrong]);
+
+        return $this->render('result', ['id' => $session['id'], 'correct' => $correct, 'wrong' => $wrong]);
     }
 
     public function actionNext()
@@ -134,18 +131,15 @@ class TestController extends \yii\web\Controller
             $nextAnswer->feedPair($pair);
 			
 			$questionNumber = $session->get('currentQuestionNumber');
-			
 			$questionCouterTitle = 'Tryb nauki - odgadnięte';
 			
-			$method = 'ACTION NEXT';
-            return $this->render('next', ['id' => $id, 'nextAnswer' => $nextAnswer, 'method' => $method, 
+            return $this->render('next', ['id' => $id, 'nextAnswer' => $nextAnswer, 
 										'questionNumber' => $questionNumber, 'totalQuestions' => $totalQuestions,
 										'questionCounterTitle' => $questionCouterTitle, ]);
         }
         else 
 		{
-			$method = 'ACTION NEXT';
-            return $this->redirect(['end', 'variableSend' => $method, ]);
+            return $this->redirect(['result']);
         }
     }
 

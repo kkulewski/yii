@@ -12,7 +12,7 @@ use yii\helpers\Html;
     ]) ?>
 
 <div class="col-lg-12">
-<?= Html::a('Wyświetl zestaw', [ 'test/start', 'id' => $zestaw->id, 'show' => TRUE ], [ 'class' => 'btn btn-primary' ]) ?>
+<?= Html::a('Wyświetl zestaw', [ 'test/view', 'id' => $zestaw->id, 'show' => TRUE ], [ 'class' => 'btn btn-primary' ]) ?>
 </div>	
 	
 <div class="col-lg-6">

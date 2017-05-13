@@ -10,4 +10,4 @@ use yii\helpers\Html;
 <p>Błędne: <?= $wrong; ?></p>
 
 
-<?= Html::a('Spróbuj ponownie', ['test/start', 'id' => $id], ['class' => 'btn btn-primary']) ?>
+<?= Html::a('Spróbuj ponownie', ['test/view', 'id' => $id], ['class' => 'btn btn-primary']) ?>
