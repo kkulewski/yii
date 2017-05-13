@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'konto_id')->dropDownList($konta)->label('Nazwa użytkownika') ?>
 
-    <?= $form->field($model, 'zestaw_id')->dropDownList($zestawy)-label('Zestaw') ?>
+    <?= $form->field($model, 'zestaw_id')->dropDownList($zestawy)->label('Zestaw') ?>
 
     <?= $form->field($model, 'data_wyniku')->textInput()->label('Data') ?>
 
