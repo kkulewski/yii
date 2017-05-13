@@ -131,33 +131,6 @@ class SiteController extends Controller
             ]);
         }
     }
-
-    /**
-     * Displays about page.
-     *
-     * @return mixed
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
-    }
-	
-	/**
-     * Displays about2 page.
-     *
-     * @return mixed
-     */
-    public function actionAbout2()
-    {
-		if (\Yii::$app->user->can('admin')) {
-			return $this->render('about2');
-		}
-		else
-		{
-			return $this->render('about');
-		}
-
-    }
 	
 	
 	/**
