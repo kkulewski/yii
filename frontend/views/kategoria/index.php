@@ -13,17 +13,14 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="kategoria-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
-
-    <p>
-        <?= Html::a('Create Kategoria', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+	
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
 
-            'nazwa',
+            'nazwa:text:Nazwa kategorii',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}',],
         ],
     ]); ?>
 </div>

@@ -19,27 +19,10 @@ $this->params['breadcrumbs'][] = $model->nazwa;
 
     <h1>Kategoria: <?= Html::encode($model->nazwa) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
-    <b>
-	test
-    </b>
-
     <?= GridView::widget([
         'dataProvider' => $podkategorie_provider,
         'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-
-            'nazwa',
+            'nazwa:text:Nazwa podkategorii',
 
             ['class' => 'yii\grid\ActionColumn', 'controller' => 'podkategoria'],
         ],

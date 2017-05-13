@@ -7,7 +7,7 @@ use yii\helpers\Html;
 /* @var $model common\models\Podkategoria */
 
 $this->title = 'Create Podkategoria';
-$this->params['breadcrumbs'][] = ['label' => 'Podkategorias', 'url' => ['index']];
+$this->params['breadcrumbs'][] = ['label' => 'Podkategoria', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="podkategoria-create">

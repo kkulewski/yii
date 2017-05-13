@@ -25,17 +25,6 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-    <p>
-        <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-        <?= Html::a('Delete', ['delete', 'id' => $model->id], [
-            'class' => 'btn btn-danger',
-            'data' => [
-                'confirm' => 'Are you sure you want to delete this item?',
-                'method' => 'post',
-            ],
-        ]) ?>
-    </p>
-
     <h2>Zestawy:</h2>
     <?php
 	$dataProvider = new ActiveDataProvider([
@@ -46,7 +35,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-            'nazwa',
+            'nazwa:text:Nazwa zestawu',
 
             ['class' => 'yii\grid\ActionColumn', 'controller' => 'zestaw'],
         ],
