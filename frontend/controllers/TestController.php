@@ -123,15 +123,15 @@ class TestController extends \yii\web\Controller
 		}
 		else if ( $mode == 2 )
 		{
+			$testMode = new SingleRandomTestMode($testData);
+		}
+		else if ( $mode == 3 )
+		{
 			$testMode = new SequentialTestMode($testData);
 		}
-		else if ( $mode == 3)
+		else if ( $mode == 4 )
 		{
-			$testMode = new SingleRandomTestMode($testData);
-		}
-		else
-		{
-			$testMode = new SingleRandomTestMode($testData);
+			$testMode = new SingleSequentialTestMode($testData);
 		}
 		
 		// handle next pair
@@ -252,6 +252,42 @@ class SequentialTestMode extends TestMode
         foreach($this->answers_correct as $correctGuess)
 		{
             unset($this->wordsDictionary[$correctGuess]);
+        }
+
+		// if no more pairs left - finish test
+        if (count($this->wordsDictionary) == 0) 
+			return null;
+
+		if($reverse == TRUE)
+		{
+			$q = 1;
+			$a = 0;
+		}
+		else
+		{
+			$q = 0;
+			$a = 1;
+		}
+			
+		// get pair
+        $pairNumber = key($this->wordsDictionary);
+        $nextWord = $this->wordsDictionary[$pairNumber];
+        $pair['pairNumber'] = $pairNumber;
+        $pair['pairQuestion'] = $nextWord[$q];
+        $pair['pairAnswer'] = $nextWord[$a];
+        
+        return $pair;
+    }
+}
+
+class SingleSequentialTestMode extends TestMode 
+{
+    public function getPair($reverse) 
+	{
+		// remove correctly guessed pairs from set
+        foreach($this->answered as $answeredQuestion)
+		{
+            unset($this->wordsDictionary[$answeredQuestion]);
         }
 
 		// if no more pairs left - finish test
