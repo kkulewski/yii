@@ -23,8 +23,21 @@ class TestController extends \yii\web\Controller
             $session->set('answers_wrong',array());
 			$session->set('currentQuestionNumber',1);
 			
+			
+			$show = Yii::$app->getRequest()->getQueryParam('show');
+			
+			if($show == TRUE)
+			{
+				$attributes = ['id', 'nazwa', 'zestaw:ntext', ];
+			}
+			else
+			{
+				$attributes = ['id', 'nazwa', ];
+			}
+
+			
 			$method = 'ACTION START';
-            return $this->render('start', ['zestaw' => $zestaw, 'method' => $method, ]);
+            return $this->render('start', ['zestaw' => $zestaw, 'method' => $method, 'attributes' => $attributes, ]);
         }
         else 
 		{ 
