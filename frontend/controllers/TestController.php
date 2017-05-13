@@ -28,11 +28,11 @@ class TestController extends \yii\web\Controller
 			
 			if($show == TRUE)
 			{
-				$attributes = ['nazwa', 'zestaw:ntext', ];
+				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', 'zestaw:ntext:Zawartość', ];
 			}
 			else
 			{
-				$attributes = ['nazwa', ];
+				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', ];
 			}
 
             return $this->render('view', ['zestaw' => $zestaw, 'attributes' => $attributes, ]);
