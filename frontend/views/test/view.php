@@ -3,6 +3,10 @@
 
 use yii\widgets\DetailView;
 use yii\helpers\Html;
+
+
+$this->title = 'Nauka - zestaw #'.$zestaw->id;
+$this->params['breadcrumbs'][] = $this->title;
 ?>
 <h2>Zestaw #<?= $zestaw->id; ?></h2>
 

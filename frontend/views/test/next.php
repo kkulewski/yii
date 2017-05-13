@@ -4,6 +4,10 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
+$this->title = 'Nauka - zestaw #'.$id;
+$questionNum = 'pytanie '.$questionNumber.'/'.$totalQuestions;
+$this->params['breadcrumbs'][] = $this->title;
+$this->params['breadcrumbs'][] = $questionNum;
 ?>
 <h2>Zestaw #<?= $id; ?>. <?= $questionCounterTitle; ?> <?= $questionNumber; ?>/<?= $totalQuestions; ?></h2>
 
