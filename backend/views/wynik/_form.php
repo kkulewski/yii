@@ -12,13 +12,13 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'konto_id')->dropDownList($konta) ?>
+    <?= $form->field($model, 'konto_id')->dropDownList($konta)->label('Nazwa użytkownika') ?>
 
-    <?= $form->field($model, 'zestaw_id')->dropDownList($zestawy) ?>
+    <?= $form->field($model, 'zestaw_id')->dropDownList($zestawy)-label('Zestaw') ?>
 
-    <?= $form->field($model, 'data_wyniku')->textInput() ?>
+    <?= $form->field($model, 'data_wyniku')->textInput()->label('Data') ?>
 
-    <?= $form->field($model, 'wynik')->textInput() ?>
+    <?= $form->field($model, 'wynik')->textInput()->label('Uzyskany wynik') ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Aktualizuj', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

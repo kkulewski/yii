@@ -29,14 +29,14 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             //'id',
-            'username',
+            'username:text:Nazwa użytkownika',
             //'auth_key',
             //'password_hash',
             //'password_reset_token',
-            'email:email',
-            'status',
-            'created_at',
-            'updated_at',
+            'email:email:Email',
+            'status:integer:Status konta',
+            'created_at:date:Utworzono',
+            'updated_at:date:Zmodyfikowano',
         ],
     ]) ?>
 

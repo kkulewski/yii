@@ -12,9 +12,9 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'nazwa')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'nazwa')->textInput(['maxlength' => true])->label('Nazwa kategorii') ?>
 
-    <?= $form->field($model, 'opis')->textarea(['rows' => 6]) ?>
+    <?= $form->field($model, 'opis')->textarea(['rows' => 6])->label('Opis') ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Aktualizuj', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
