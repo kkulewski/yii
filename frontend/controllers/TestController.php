@@ -28,11 +28,11 @@ class TestController extends \yii\web\Controller
 			
 			if($show == TRUE)
 			{
-				$attributes = ['id', 'nazwa', 'zestaw:ntext', ];
+				$attributes = ['nazwa', 'zestaw:ntext', ];
 			}
 			else
 			{
-				$attributes = ['id', 'nazwa', ];
+				$attributes = ['nazwa', ];
 			}
 
 			
@@ -135,9 +135,12 @@ class TestController extends \yii\web\Controller
 			
 			$questionNumber = $session->get('currentQuestionNumber');
 			
+			$questionCouterTitle = 'Tryb nauki - odgadnięte';
+			
 			$method = 'ACTION NEXT';
             return $this->render('next', ['id' => $id, 'nextAnswer' => $nextAnswer, 'method' => $method, 
-										'questionNumber' => $questionNumber, 'totalQuestions' => $totalQuestions, ]);
+										'questionNumber' => $questionNumber, 'totalQuestions' => $totalQuestions,
+										'questionCounterTitle' => $questionCouterTitle, ]);
         }
         else 
 		{

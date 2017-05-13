@@ -36,11 +36,9 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Strona główna', 'url' => ['/site/index']],
-        ['label' => 'About', 'url' => ['/site/about']],
-		['label' => 'About2', 'url' => ['/site/about2']],
-        ['label' => 'Kontakt', 'url' => ['/site/contact']],
-		['label' => 'Uzytkownik', 'url' => ['/site/uzytkownik']],
         ['label' => 'Nauka', 'url' => ['/kategoria/index']],
+		['label' => 'Wyniki', 'url' => ['/site/uzytkownik']],
+        ['label' => 'Kontakt', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Zarejestruj', 'url' => ['/site/signup']];

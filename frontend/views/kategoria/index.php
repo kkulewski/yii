@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
             'nazwa:text:Nazwa kategorii',
 
-            ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {update}',],
+            ['class' => 'yii\grid\ActionColumn', 'template' => '{view}',],
         ],
     ]); ?>
 </div>

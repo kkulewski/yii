@@ -37,7 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'columns' => [
             'nazwa:text:Nazwa zestawu',
 
-            ['class' => 'yii\grid\ActionColumn', 'controller' => 'zestaw'],
+            ['class' => 'yii\grid\ActionColumn', 'controller' => 'zestaw', 'template' => '{view}',],
         ],
     ]); ?>
 

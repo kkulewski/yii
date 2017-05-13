@@ -24,7 +24,7 @@ $this->params['breadcrumbs'][] = $model->nazwa;
         'columns' => [
             'nazwa:text:Nazwa podkategorii',
 
-            ['class' => 'yii\grid\ActionColumn', 'controller' => 'podkategoria'],
+            ['class' => 'yii\grid\ActionColumn', 'controller' => 'podkategoria', 'template' => '{view}',],
         ],
     ]); ?>
 

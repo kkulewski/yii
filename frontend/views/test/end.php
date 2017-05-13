@@ -4,11 +4,10 @@
 use yii\helpers\Html;
 
 ?>
-<h1>Wyniki testu</h1>
+<h2>Zestaw #<?= $id; ?></h2>
+<h2>Wyniki</h2>
+<p>Prawidłowe: <?= $correct; ?></p>
+<p>Błędne: <?= $wrong; ?></p>
 
-<p>STATE: <?= $method; ?></p>
-<p>CORRECT: <?= $correct; ?></p>
-<p>WRONG: <?= $wrong; ?></p>
 
-
-<?= Html::a('Retry', ['test/start', 'id' => $id], ['class' => 'btn btn-primary']) ?>
+<?= Html::a('Spróbuj ponownie', ['test/start', 'id' => $id], ['class' => 'btn btn-primary']) ?>

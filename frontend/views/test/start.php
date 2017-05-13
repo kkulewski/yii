@@ -4,9 +4,7 @@
 use yii\widgets\DetailView;
 use yii\helpers\Html;
 ?>
-<h1>Test</h1>
-
-<p>Zestaw nr <?= $zestaw->id; ?> </p>
+<h2>Zestaw #<?= $zestaw->id; ?></h2>
 
     <?= DetailView::widget([
         'model' => $zestaw,

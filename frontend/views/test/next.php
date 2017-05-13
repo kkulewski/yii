@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 ?>
-<h1>Test nr <?= $id; ?>. Pytanie <?= $questionNumber; ?>/<?= $totalQuestions; ?></h1>
+<h2>Zestaw #<?= $id; ?>. <?= $questionCounterTitle; ?> <?= $questionNumber; ?>/<?= $totalQuestions; ?></h2>
 
 <?php $form = ActiveForm::begin() ?>
 <?= $form->field($nextAnswer, 'pairNumber')->hiddenInput()->label(false); ?>
