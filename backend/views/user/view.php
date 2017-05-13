@@ -37,6 +37,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'status:integer:Status konta',
             'created_at:date:Utworzono',
             'updated_at:date:Zmodyfikowano',
+			'dostep:integer:Poziom dostępu',
         ],
     ]) ?>
 

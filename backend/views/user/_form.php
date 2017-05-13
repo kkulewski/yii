@@ -17,6 +17,7 @@ use yii\widgets\ActiveForm;
 	<?= $form->field($model, 'status')->textInput()->label('Status konta') ?>
 	<?= $form->field($model, 'created_at')->textInput()->label('Utworzono') ?>
 	<?= $form->field($model, 'updated_at')->textInput()->label('Zmodyfikowano') ?>
+	<?= $form->field($model, 'dostep')->textInput()->label('Poziom dostępu') ?>
 
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Aktualizuj', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>

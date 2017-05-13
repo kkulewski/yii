@@ -32,6 +32,8 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'created_at') ?>
 
     <?= $form->field($model, 'updated_at') ?>
+	
+	<?= $form->field($model, 'dostep') ?>
 
     <div class="form-group">
         <?= Html::submitButton('Szukaj', ['class' => 'btn btn-primary']) ?>
