@@ -35,6 +35,6 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="col-lg-12">
 	<h2>Tryb sprawdzenia wiedzy</h2>
-<?= Html::a('Sprawdzian 1 >> 2', [ 'test/next', 'mode' => 1, 'reverse' => FALSE, 'singleMode' => TRUE, 'test' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?><br/><br/> 
-<?= Html::a('Sprawdzian 2 >> 1', [ 'test/next', 'mode' => 1, 'reverse' => TRUE, 'singleMode' => TRUE, 'test' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?>
+<?= Html::a('Sprawdzian 1 >> 2', [ 'test/next', 'mode' => 1, 'reverse' => FALSE, 'singleMode' => TRUE, 'examMode' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?><br/><br/> 
+<?= Html::a('Sprawdzian 2 >> 1', [ 'test/next', 'mode' => 1, 'reverse' => TRUE, 'singleMode' => TRUE, 'examMode' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?>
 </div>

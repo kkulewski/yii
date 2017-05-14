@@ -6,6 +6,7 @@ use Yii;
 
 use common\models\Zestaw;
 use common\models\Odpowiedz;
+use common\models\Wynik;
 
 class TestController extends \yii\web\Controller
 {
@@ -23,6 +24,7 @@ class TestController extends \yii\web\Controller
             $session->set('answers_wrong', array());
 			$session->set('answered', array());
 			$session->set('currentQuestionNumber', 1);
+			$session->set('examMode', 0);
 			
 			
 			$show = Yii::$app->getRequest()->getQueryParam('show');
@@ -52,8 +54,28 @@ class TestController extends \yii\web\Controller
 
 		$correct = count ( $session->get('answers_correct') );
 		$wrong = count ( $session->get('answers_wrong') );
+		
+		$examMode = $session->get('examMode');
 
-        return $this->render('result', ['id' => $session['id'], 'correct' => $correct, 'wrong' => $wrong]);
+		$resultPercent = (($correct / ($correct + $wrong)) * 100);
+		$resultPercent = (int)($resultPercent);
+		
+		if(!Yii::$app->user->isGuest)
+		{
+			if($examMode == TRUE)
+			{
+				$wynik = new Wynik();	
+			
+				$wynik->konto_id = Yii::$app->user->identity->id;
+				$wynik->zestaw_id = $session->get('id');
+				$wynik->data_wyniku = date('Y-m-d');
+				$wynik->wynik = $resultPercent;
+			
+				$wynik->save(false);
+			}
+		}
+
+        return $this->render('result', ['id' => $session['id'], 'correct' => $correct, 'wrong' => $wrong, 'resultPercent' => $resultPercent]);
     }
 
     public function actionNext()
@@ -76,8 +98,11 @@ class TestController extends \yii\web\Controller
 		
 		
 		$mode = Yii::$app->getRequest()->getQueryParam('mode');
+		$examMode = Yii::$app->getRequest()->getQueryParam('examMode');
 		$reverse = Yii::$app->getRequest()->getQueryParam('reverse');
 		$singleMode = Yii::$app->getRequest()->getQueryParam('singleMode');
+		
+		$session->set('examMode', $examMode);
 		// get $mode from user -> button in test-start view?
 
         // get user answer

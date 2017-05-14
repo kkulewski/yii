@@ -8,7 +8,7 @@ $this->params['breadcrumbs'][] = $this->title;
 $this->params['breadcrumbs'][] = $resultText;
 ?>
 <h2>Zestaw #<?= $id; ?></h2>
-<h2>Wyniki</h2>
+<h2>Wynik - <?= $resultPercent; ?>%</h2>
 <p>Prawidłowe: <?= $correct; ?></p>
 <p>Błędne: <?= $wrong; ?></p>
 
