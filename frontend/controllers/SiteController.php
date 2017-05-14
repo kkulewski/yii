@@ -14,6 +14,7 @@ use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
 use frontend\models\ContactForm;
+use yii\data\ActiveDataProvider;
 
 /**
  * Site controller
@@ -140,12 +141,10 @@ class SiteController extends Controller
      * @return mixed
      */
     public function actionWynik()
-    {
-		$wynikModel = new Wynik();
-		$wynikModel2 = Wynik::find()
-		->where(['konto_id' => Yii::$app->user->identity->id])
-		->orderBy('data_wyniku')
-		->all();
+    {		
+		$wynikModel = new ActiveDataProvider([ 
+				'query' => Wynik::find()->where(['konto_id' => Yii::$app->user->identity->id])
+				]);
 		
         return $this->render('wynik', ['wynikModel' => $wynikModel ]);
     }
