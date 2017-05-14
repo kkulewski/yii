@@ -9,6 +9,7 @@ use yii\filters\VerbFilter;
 use yii\filters\AccessControl;
 use common\models\LoginForm;
 use common\models\User;
+use common\models\Wynik;
 use frontend\models\PasswordResetRequestForm;
 use frontend\models\ResetPasswordForm;
 use frontend\models\SignupForm;
@@ -138,11 +139,17 @@ class SiteController extends Controller
      *
      * @return mixed
      */
-    public function actionUzytkownik()
+    public function actionWynik()
     {
-		$model = new User();
-        return $this->render('Uzytkownik', [ 'model' => $model, ]);
+		$wynikModel = new Wynik();
+		$wynikModel2 = Wynik::find()
+		->where(['konto_id' => Yii::$app->user->identity->id])
+		->orderBy('data_wyniku')
+		->all();
+		
+        return $this->render('wynik', ['wynikModel' => $wynikModel ]);
     }
+	
 
     /**
      * Signs user up.
