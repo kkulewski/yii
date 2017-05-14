@@ -28,7 +28,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Słówka',
+        'brandLabel' => 'Słówka!',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -36,12 +36,12 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Strona główna', 'url' => ['/site/index']],
-		['label' => 'Jezyk', 'url' => ['/jezyk'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
-		['label' => 'Kategoria', 'url' => ['/kategoria'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
-		['label' => 'Podkategoria', 'url' => ['/podkategoria'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
-		['label' => 'Zestaw', 'url' => ['/zestaw'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
-		['label' => 'Wynik', 'url' => ['/wynik'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
-		['label' => 'Użytkownik', 'url' => ['/user'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1), ],
+		['label' => 'Języki', 'url' => ['/jezyk'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Kategorie', 'url' => ['/kategoria'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Podkategorie', 'url' => ['/podkategoria'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Zestawy', 'url' => ['/zestaw'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Wyniki', 'url' => ['/wynik'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1),],
+		['label' => 'Użytkownicy', 'url' => ['/user'], 'visible' => (!Yii::$app->user->isGuest && Yii::$app->user->identity->dostep == 1), ],
     ];
     if (Yii::$app->user->isGuest) {
         $menuItems[] = ['label' => 'Zaloguj', 'url' => ['/site/login']];
@@ -73,7 +73,7 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Słówka <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Krzysztof Kulewski- Słówka! <?= date('Y') ?></p>
 
         <p class="pull-right"><?= Yii::powered() ?></p>
     </div>
