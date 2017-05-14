@@ -32,7 +32,7 @@ class Odpowiedz extends Model
 		else
 			$answerKey = 1;
 		
-        $isDifferent = ( strcmp( trim($zestaw[$this->pairNumber][$answerKey]), trim($this->userAnswer) ) );
+        $isDifferent = ( strcmp( strtolower(trim($zestaw[$this->pairNumber][$answerKey])), strtolower(trim($this->userAnswer)) ) );
 		
 		if($isDifferent == 0)
 		{
