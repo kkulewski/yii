@@ -37,7 +37,7 @@ AppAsset::register($this);
     $menuItems = [
         ['label' => 'Strona główna', 'url' => ['/site/index']],
         ['label' => 'Nauka', 'url' => ['/kategoria/index']],
-		['label' => 'Wyniki', 'url' => ['/site/uzytkownik']],
+		['label' => 'Wyniki', 'url' => ['/site/wynik'], 'visible' => !Yii::$app->user->isGuest],
         ['label' => 'Kontakt', 'url' => ['/site/contact']],
     ];
     if (Yii::$app->user->isGuest) {
