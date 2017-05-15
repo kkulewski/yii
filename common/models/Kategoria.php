@@ -47,6 +47,6 @@ class Kategoria extends \yii\db\ActiveRecord
 	
 	public function getPodkategorias()
 	{
-		return $this->hasMany(Podkategoria::classname(), ['id' => 'id']);
+		return $this->hasMany(Podkategoria::classname(), ['kategoria_id' => 'id']);
     }
 }
