@@ -78,9 +78,13 @@ class ZestawController extends Controller
 		$podkategorie = Podkategoria::find()->orderBy('nazwa')->all();
 		$podkategorie = ArrayHelper::map($podkategorie, 'id', 'nazwa');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) 
+		{
+			$model->ilosc_slowek = count(explode(PHP_EOL, $model->zestaw));
+			$model->save();
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        } else 
+		{
             return $this->render('create', [
                 'model' => $model,
 				'konta' => $konta,
@@ -109,9 +113,13 @@ class ZestawController extends Controller
 		$podkategorie = Podkategoria::find()->orderBy('nazwa')->all();
 		$podkategorie = ArrayHelper::map($podkategorie, 'id', 'nazwa');
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) 
+		{
+			$model->ilosc_slowek = count(explode(PHP_EOL, $model->zestaw));
+			$model->save();
             return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+        } else 
+		{
             return $this->render('update', [
                 'model' => $model,
 				'konta' => $konta,

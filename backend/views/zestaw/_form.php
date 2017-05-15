@@ -24,8 +24,6 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'zestaw')->textarea(['rows' => 6])->label('Zawartość') ?>
 
-    <?= $form->field($model, 'ilosc_slowek')->textInput()->label('Ilość słówek') ?>
-
     <div class="form-group">
         <?= Html::submitButton($model->isNewRecord ? 'Dodaj' : 'Aktualizuj', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
