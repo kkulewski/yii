@@ -57,11 +57,11 @@ class TestController extends \yii\web\Controller
 			
 			if($show == TRUE)
 			{
-				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', 'zestaw:ntext:Zawartość', [ 'value' => $topScore, 'label' => 'Najlepszy wynik', ] ];
+				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', 'ilosc_slowek:integer:Ilość słówek', [ 'value' => $topScore, 'label' => 'Najlepszy wynik', ], 'zestaw:ntext:Zawartość', ];
 			}
 			else
 			{
-				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', [ 'value' => $topScore, 'label' => 'Najlepszy wynik', ] ];
+				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', 'ilosc_slowek:integer:Ilość słówek', [ 'value' => $topScore, 'label' => 'Najlepszy wynik', ] ];
 			}
 
             return $this->render('view', ['zestaw' => $zestaw, 'attributes' => $attributes, 'topScore' => $topScore, ]);
