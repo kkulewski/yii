@@ -5,11 +5,19 @@ use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
 $this->title = 'Nauka - zestaw #'.$id;
-$questionNum = 'pytanie '.$questionNumber.'/'.$totalQuestions;
+if($singleMode == TRUE)
+{
+		$questionNum = $questionNumber.'/'.$totalQuestions;
+}
+else
+{
+	$questionNum = $questionNumber;
+}
+
 $this->params['breadcrumbs'][] = $this->title;
 $this->params['breadcrumbs'][] = $questionNum;
 ?>
-<h2>Zestaw #<?= $id; ?>. <?= $questionCounterTitle; ?> <?= $questionNumber; ?>/<?= $totalQuestions; ?></h2>
+<h2>Zestaw #<?= $id; ?>. <?= $questionCounterTitle; ?> <?= $questionNum ?></h2>
 
 <?php $form = ActiveForm::begin() ?>
 <?= $form->field($nextAnswer, 'pairNumber')->hiddenInput()->label(false); ?>

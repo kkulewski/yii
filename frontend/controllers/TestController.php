@@ -194,7 +194,7 @@ class TestController extends \yii\web\Controller
 			
             return $this->render('next', ['id' => $id, 'nextAnswer' => $nextAnswer, 
 										'questionNumber' => $questionNumber, 'totalQuestions' => $totalQuestions,
-										'questionCounterTitle' => $questionCouterTitle, ]);
+										'questionCounterTitle' => $questionCouterTitle, 'singleMode' => $singleMode, ]);
         }
         else 
 		{
