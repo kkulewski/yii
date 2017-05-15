@@ -27,8 +27,17 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <h2>Zestawy:</h2>
     <?php
+	if(!Yii::$app->user->isGuest)
+	{
+		$userId = Yii::$app->user->identity->id;
+	}
+	else
+	{
+		$userId = 1;
+	}
+	
 	$dataProvider = new ActiveDataProvider([
-	    'query' => Zestaw::find()->where(['podkategoria_id' => $model->id]),
+	    'query' => Zestaw::find()->where(['and', ['podkategoria_id' => $model->id], ['or', ['konto_id' => 1], ['konto_id' => $userId,]]]),
 	]);
     ?>
     
