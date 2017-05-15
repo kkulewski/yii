@@ -22,8 +22,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="col-lg-12">
 	<h2><br>Tryb sprawdzenia wiedzy<br></h2><br>
 	<div class="col-lg-6">
-		<?= Html::a(''.$zestaw->jezyk1->nazwa.' >> '.$zestaw->jezyk2->nazwa.'', [ 'test/next', 'mode' => 1, 'reverse' => FALSE, 'singleMode' => TRUE, 'examMode' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?><br><br>
-		<?= Html::a(''.$zestaw->jezyk2->nazwa.' >> '.$zestaw->jezyk1->nazwa.'', [ 'test/next', 'mode' => 1, 'reverse' => TRUE, 'singleMode' => TRUE, 'examMode' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?>
+		<div class="col-lg-4">
+			<?= Html::a(''.$zestaw->jezyk1->nazwa.' >> '.$zestaw->jezyk2->nazwa.'', [ 'test/next', 'mode' => 1, 'reverse' => FALSE, 'singleMode' => TRUE, 'examMode' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?><br><br>
+			<?= Html::a(''.$zestaw->jezyk2->nazwa.' >> '.$zestaw->jezyk1->nazwa.'', [ 'test/next', 'mode' => 1, 'reverse' => TRUE, 'singleMode' => TRUE, 'examMode' => TRUE, ], [ 'class' => 'btn btn-primary' ]) ?>
+		</div>
 	</div>
 </div>
 <div class="col-lg-12">
