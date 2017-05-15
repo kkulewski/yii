@@ -38,6 +38,7 @@ AppAsset::register($this);
         ['label' => 'Strona główna', 'url' => ['/site/index']],
         ['label' => 'Nauka', 'url' => ['/kategoria/index']],
 		['label' => 'Wyniki', 'url' => ['/site/wynik'], 'visible' => !Yii::$app->user->isGuest],
+		['label' => 'Własne zestawy', 'url' => ['/zestaw/index'], 'visible' => !Yii::$app->user->isGuest],
         ['label' => 'Kontakt', 'url' => ['/site/contact'], 'visible' => FALSE],
     ];
     if (Yii::$app->user->isGuest) {
