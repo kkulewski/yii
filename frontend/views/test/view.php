@@ -11,6 +11,7 @@ $this->params['breadcrumbs'][] = $this->title;
 <h2>Zestaw #<?= $zestaw->id; ?></h2>
 
 <div class="col-lg-12">
+<p>Postęp: <progress max="100" min="0" value="<?= $topScore ?>"></progress> (<?= $topScore; ?>%)</p>
     <?= DetailView::widget([
         'model' => $zestaw,
         'attributes' => $attributes,
