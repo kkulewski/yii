@@ -17,8 +17,7 @@ $this->title = 'Podkategoria: '.$model->nazwa;
 $this->params['breadcrumbs'][] =
     ['label' => 'Kategorie', 'url' => Url::to(['kategoria/index'])];
 $this->params['breadcrumbs'][] =
-    ['label' => $kategoria->nazwa,
-     'url' => Url::to(['kategoria/view', 'id' => $kategoria->id])];
+    ['label' => 'Podkategorie', 'url' => Url::to(['podkategoria/index'])];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="podkategoria-view">
