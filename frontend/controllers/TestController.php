@@ -25,20 +25,46 @@ class TestController extends \yii\web\Controller
 			$session->set('answered', array());
 			$session->set('currentQuestionNumber', 1);
 			$session->set('examMode', 0);
-			
+		
+			// if user is logged - try to show topScore
+			if(!Yii::$app->user->isGuest)
+			{
+				$topScoreExists = 
+					Wynik::find()
+					->where(['konto_id' => Yii::$app->user->identity->id, 'zestaw_id' => $zestaw->id])
+					->orderBy(['wynik' => SORT_DESC])
+					->exists();
+					
+				if($topScoreExists == TRUE)
+				{
+					$topScore = 
+						Wynik::find()
+						->where(['konto_id' => Yii::$app->user->identity->id, 'zestaw_id' => $zestaw->id])
+						->orderBy(['wynik' => SORT_DESC])
+						->one()->wynik;
+				}
+				else
+				{
+					$topScore = 0;
+				}
+			}
+			else
+			{
+				$topScore = 0;
+			}
 			
 			$show = Yii::$app->getRequest()->getQueryParam('show');
 			
 			if($show == TRUE)
 			{
-				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', 'zestaw:ntext:Zawartość', ];
+				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', 'zestaw:ntext:Zawartość', [ 'value' => $topScore, 'label' => 'Najlepszy wynik', ] ];
 			}
 			else
 			{
-				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', ];
+				$attributes = ['nazwa:text:Nazwa zestawu', 'jezyk1.nazwa:text:Język 1', 'jezyk2.nazwa:text:Język 2', [ 'value' => $topScore, 'label' => 'Najlepszy wynik', ] ];
 			}
 
-            return $this->render('view', ['zestaw' => $zestaw, 'attributes' => $attributes, ]);
+            return $this->render('view', ['zestaw' => $zestaw, 'attributes' => $attributes, 'topScore' => $topScore, ]);
         }
         else 
 		{ 
